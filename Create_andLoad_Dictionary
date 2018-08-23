@@ -1,0 +1,19 @@
+
+Function CreateDictionary(dictname)
+    Dim dictnamex As New Dictionary
+    Set dictname = dictnamex
+End Function
+
+Function LoadDictionary(dictname, xrange) 'Column Range
+dictname.RemoveAll
+
+xrange.Select
+For Each x In Selection
+'    If Not dictname.Item(x) Is Nothing Then
+    If Not dictname.Exists(x) Then
+        dictname.Add x, ""
+    End If
+next_x:
+Next x
+
+End Function
