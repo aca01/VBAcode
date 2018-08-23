@@ -1,5 +1,5 @@
 Function Convert_To_Number(col_Array)
-
+' col_Array is an array list of the name of the columns which content are to be converted to the number format
 For Each ColHdr In col_Array
 col = ActiveSheet.Rows(1).Find(What:=ColHdr, LookIn:=xlValues, LookAt:=xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlNext, MatchCase:=False).Column
     Columns(col).Select
