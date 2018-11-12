@@ -1,0 +1,52 @@
+'Create userform named 'progress' 
+
+
+Function progressbar(CurrRow, totalrows, Optional process)
+
+'Dim CurrRow 'As Long
+'Dim totalrows 'As Long
+Dim currentprogress As Double
+Dim progresspercentage As Double
+Dim barwidth As Long
+
+'CurrRow = 2
+'totalrows = Application.CountA(Range("a:a"))
+'totalrows = 1500
+
+Call initprogressbar
+'Do While CurrRow <= totalrows
+
+        currentprogress = CurrRow / totalrows
+        barwidth = progress.Border.Width * currentprogress
+        progresspercentage = Round(currentprogress * 100, 0)
+        
+        progress.Bar.Width = barwidth
+        If IsEmpty(process) = True Then
+        progress.Text.Caption = progresspercentage & " % Complete"
+        Else
+        progress.Text.Caption = process & ": " & progresspercentage & " % Complete"
+        End If
+        
+        DoEvents
+        
+'        CurrRow = CurrRow + 1
+
+'Loop
+If CurrRow = totalrows Then
+ Unload progress
+End If
+
+End Function
+Sub initprogressbar()
+    
+    With progress
+        .Bar.Width = 0
+        .Text.Caption = "0% Complete"
+        .Show vbModeless
+    End With
+
+End Sub
+Function FindStringColumn(stringToFind, xrange)
+    result = xrange.Find(What:=stringToFind, LookIn:=xlValues, LookAt:=xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlNext, MatchCase:=False).Column
+    FindStringColumn = result
+End Function
